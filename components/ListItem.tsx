@@ -30,7 +30,7 @@ const ListItem = ({ price, rate, name, image }: ListItemProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: "40%",
+    width: 150,
     height: 175,
     shadowColor: "black",
     shadowOffset: { width: 0, height: 4 },
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   price: {
     fontSize: 14,
-    color: "#D4D4D4"
+    color: "#D4D4D4",
   },
 });
 
