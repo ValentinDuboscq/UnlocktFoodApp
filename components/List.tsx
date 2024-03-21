@@ -27,21 +27,23 @@ const list = [
   },
 ];
 
-type ListProps = {};
+type ListProps = {
+  title: string;
+};
 
-const List = () => {
+const List = ({ title }: ListProps) => {
   // TODO : https://chat.openai.com/share/ed4daa21-568c-4054-8060-2ba4098cb5de
 
   const handleLoadMore = () => {
     // if (hasNextPage && !isFetchingNextPage) {
     //   fetchNextPage();
     // }
-    console.log("more")
+    console.log("more");
   };
 
   return (
     <View style={styles.container}>
-      <Title>Title</Title>
+      <Title>{title}</Title>
       <FlatList
         contentContainerStyle={styles.list}
         data={list}
@@ -50,6 +52,7 @@ const List = () => {
         horizontal={true}
         ItemSeparatorComponent={() => <View style={{ width: 16 }} />}
         onEndReached={handleLoadMore}
+        showsHorizontalScrollIndicator={false}
         // onEndReachedThreshold={0.5}
       />
       {/*<View style={styles.list}>*/}

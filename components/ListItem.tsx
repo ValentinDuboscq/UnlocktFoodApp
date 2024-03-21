@@ -35,8 +35,9 @@ const styles = StyleSheet.create({
     shadowColor: "black",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
-    shadowRadius: 10,
+    shadowRadius: 8,
     borderRadius: 12,
+    marginBottom: 16,
   },
   imageContainer: {
     flex: 1,
@@ -56,6 +57,7 @@ const styles = StyleSheet.create({
   footer: {
     flexDirection: "column",
     gap: 4,
+    padding: 8,
     backgroundColor: "white",
     borderEndStartRadius: 12,
     borderEndEndRadius: 12,
