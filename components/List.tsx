@@ -2,6 +2,8 @@ import React from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import ListItem from "./ListItem";
 import Title from "./Title";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { fetchFoods } from "../api/actions";
 
 const list = [
   {
@@ -33,12 +35,19 @@ type ListProps = {
 
 const List = ({ title }: ListProps) => {
   // TODO : https://chat.openai.com/share/ed4daa21-568c-4054-8060-2ba4098cb5de
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery({
+      initialPageParam: 0,
+      queryKey: ["foods"],
+      queryFn: ({ pageParam }) => fetchFoods(pageParam),
+      getNextPageParam: (lastPage) => lastPage.nextPage ?? undefined,
+    });
 
   const handleLoadMore = () => {
-    // if (hasNextPage && !isFetchingNextPage) {
-    //   fetchNextPage();
-    // }
-    console.log("more");
+    if (hasNextPage && !isFetchingNextPage) {
+      console.log("refetch on scroll");
+      fetchNextPage();
+    }
   };
 
   return (
