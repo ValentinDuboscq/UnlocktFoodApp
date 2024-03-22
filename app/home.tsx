@@ -5,8 +5,8 @@ import List from "../components/List";
 export default function Home() {
   return (
     <View style={styles.content}>
-      <List title="Favorite Chicken" />
-      <List title="Favorite Pizzas" />
+      <List title="Favorite Pizzas" type="pizzas" />
+      <List title="Favorite Chicken" type="fried-chicken" />
     </View>
   );
 }

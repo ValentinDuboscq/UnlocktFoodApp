@@ -7,15 +7,15 @@ import Rate from "./Rate";
 type ListItemProps = {
   price: number;
   name: string;
-  image: string;
+  img: string;
   rate: number;
 };
 
-const ListItem = ({ price, rate, name, image }: ListItemProps) => {
+const ListItem = ({ price, rate, name, img }: ListItemProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image style={styles.image} source={image} contentFit="cover" />
+        <Image style={styles.image} source={img} contentFit="cover" />
         <View style={styles.rateContainer}>
           <Rate value={rate} />
         </View>
