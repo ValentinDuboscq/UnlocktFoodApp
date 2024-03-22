@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { StyleSheet, View } from "react-native";
-import Star from "./icons/Star";
+import Star from "../icons/Star";
 
 const Rate = ({ value }: { value: number }) => {
   const arr = useMemo(

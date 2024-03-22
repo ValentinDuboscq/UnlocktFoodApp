@@ -1,24 +1,29 @@
 import React from "react";
-import { Pressable, PressableProps, StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import Text from "./Text";
+import { Link } from "expo-router";
+import { LinkProps } from "expo-router/build/link/Link";
+import colors from "../../assets/colors";
 
-const Button = (props: PressableProps & { title: string }) => {
-  const { title = "Save" } = props;
+const Button = (props: LinkProps & { title: string }) => {
+  const { title } = props;
 
   return (
-    <Pressable
+    <Link
       {...props}
+      asChild
       style={[
         styles.button,
         props.disabled && styles.buttonDisabled,
-        // @ts-ignore
         props.style,
       ]}
     >
-      <Text style={[styles.text, props.disabled && styles.textDisabled]}>
-        {title}
-      </Text>
-    </Pressable>
+      <Pressable>
+        <Text style={[styles.text, props.disabled && styles.textDisabled]}>
+          {title}
+        </Text>
+      </Pressable>
+    </Link>
   );
 };
 
@@ -30,12 +35,12 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
     paddingLeft: 32,
     paddingRight: 32,
-    backgroundColor: "#4D50F4",
+    backgroundColor: colors.primary,
     borderRadius: 10,
     alignSelf: "flex-start",
   },
   buttonDisabled: {
-    backgroundColor: "#EDEEFE",
+    backgroundColor: "#ffdee1",
   },
   text: {
     fontSize: 16,
@@ -44,7 +49,7 @@ const styles = StyleSheet.create({
     color: "white",
   },
   textDisabled: {
-    color: "#CACBFC",
+    color: colors.primary,
   },
 });
 

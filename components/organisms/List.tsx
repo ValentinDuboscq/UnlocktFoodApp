@@ -1,12 +1,12 @@
 import React, { useMemo } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
-import ListItem from "./ListItem";
-import Title from "./Title";
+import ListItem from "../molecules/ListItem";
+import Title from "../atoms/Title";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { fetchFoods, Food } from "../api/actions";
-import { FoodTypes } from "../types/foods";
-import Star from "./icons/Star";
-import Text from "./Text";
+import { fetchFoods, Food } from "../../api/actions";
+import { FoodTypes } from "../../types/foods";
+import Star from "../icons/Star";
+import Text from "../atoms/Text";
 
 type ListProps = {
   title: string;
@@ -24,7 +24,6 @@ const List = ({ title, type }: ListProps) => {
 
   const handleLoadMore = () => {
     if (hasNextPage && !isFetchingNextPage) {
-      console.log("refetch on scroll");
       fetchNextPage();
     }
   };
@@ -53,7 +52,7 @@ const List = ({ title, type }: ListProps) => {
           onEndReached={handleLoadMore}
           showsHorizontalScrollIndicator={false}
           ListFooterComponent={
-            isFetchingNextPage ? <Text>Chargement...</Text> : null
+            isFetchingNextPage ? <Text>Loading...</Text> : null
           }
           onEndReachedThreshold={0.5}
         />

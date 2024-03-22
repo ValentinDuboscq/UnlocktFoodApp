@@ -1,8 +1,9 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Image } from "expo-image";
-import Text from "./Text";
+import Text from "../atoms/Text";
 import Rate from "./Rate";
+import useDimensions from "../../hooks/useDimensions";
 
 type ListItemProps = {
   price: number;
@@ -12,8 +13,15 @@ type ListItemProps = {
 };
 
 const ListItem = ({ price, rate, name, img }: ListItemProps) => {
+  const { screen } = useDimensions();
+
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        { width: screen.width / 2.5, height: screen.height / 3.5 },
+      ]}
+    >
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={img} contentFit="cover" />
         <View style={styles.rateContainer}>
@@ -30,8 +38,6 @@ const ListItem = ({ price, rate, name, img }: ListItemProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 150,
-    height: 175,
     shadowColor: "black",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
@@ -56,14 +62,16 @@ const styles = StyleSheet.create({
   },
   footer: {
     flexDirection: "column",
-    gap: 4,
+    justifyContent: "space-between",
     padding: 8,
     backgroundColor: "white",
     borderEndStartRadius: 12,
     borderEndEndRadius: 12,
+    height: "40%",
   },
   title: {
     fontSize: 16,
+    fontFamily: "Rubik_600SemiBold",
   },
   price: {
     fontSize: 14,

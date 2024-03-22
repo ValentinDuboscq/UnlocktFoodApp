@@ -1,6 +1,7 @@
 import { StyleSheet, Text as NativeText } from "react-native";
 import { ReactNode } from "react";
 import { TextProps } from "react-native/Libraries/Text/Text";
+import colors from "../../assets/colors";
 
 const Text = ({ children, ...props }: { children: ReactNode } & TextProps) => {
   return (
@@ -12,8 +13,8 @@ const Text = ({ children, ...props }: { children: ReactNode } & TextProps) => {
 
 const styles = StyleSheet.create({
   text: {
-    // fontFamily: "Inter_500Medium",
-    color: "#212836",
+    fontFamily: "Rubik_400Regular",
+    color: colors.text,
   },
 });
 
