@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
 import Text from "./Text";
 import { Link } from "expo-router";
@@ -6,6 +6,7 @@ import { LinkProps } from "expo-router/build/link/Link";
 import colors from "../../assets/colors";
 
 const Button = (props: LinkProps & { title: string }) => {
+  const [isPressed, setIsPressed] = useState(false);
   const { title } = props;
 
   return (
@@ -16,9 +17,13 @@ const Button = (props: LinkProps & { title: string }) => {
         styles.button,
         props.disabled && styles.buttonDisabled,
         props.style,
+        isPressed && styles.buttonPressed
       ]}
     >
-      <Pressable>
+      <Pressable
+        onPressIn={() => setIsPressed(true)}
+        onPressOut={() => setIsPressed(false)}
+      >
         <Text style={[styles.text, props.disabled && styles.textDisabled]}>
           {title}
         </Text>
@@ -41,6 +46,9 @@ const styles = StyleSheet.create({
   },
   buttonDisabled: {
     backgroundColor: "#ffdee1",
+  },
+  buttonPressed: {
+    backgroundColor: "#f88f99",
   },
   text: {
     fontSize: 16,
