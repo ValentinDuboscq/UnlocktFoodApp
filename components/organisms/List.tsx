@@ -7,6 +7,8 @@ import { fetchFoods, Food } from "../../api/actions";
 import { FoodTypes } from "../../types/foods";
 import Text from "../atoms/Text";
 import WithPadding from "../templates/WithPadding";
+import useDimensions from "../../hooks/useDimensions";
+import Loader from "../icons/Loader";
 
 type ListProps = {
   title: string;
@@ -14,6 +16,7 @@ type ListProps = {
 };
 
 const List = ({ title, type }: ListProps) => {
+  const { screen } = useDimensions();
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
       initialPageParam: 0,
@@ -50,13 +53,28 @@ const List = ({ title, type }: ListProps) => {
           renderItem={({ item }) => <ListItem {...item} />}
           keyExtractor={(item) => item.id}
           horizontal={true}
-          ItemSeparatorComponent={() => <View style={{ width: 16 }} />}
+          ItemSeparatorComponent={() => (
+            <View style={{ width: screen.width / 20 }} />
+          )}
           onEndReached={handleLoadMore}
           showsHorizontalScrollIndicator={false}
           ListFooterComponent={
-            isFetchingNextPage ? <Text>Loading...</Text> : null
+            isFetchingNextPage ? (
+              <View
+                style={[
+                  styles.loader,
+                  {
+                    width: screen.width / 2.5,
+                    height: screen.height / 5,
+                    marginLeft: screen.width / 20,
+                  },
+                ]}
+              >
+                <Loader />
+              </View>
+            ) : null
           }
-          onEndReachedThreshold={0.5}
+          // onEndReachedThreshold={0.5}
         />
       ) : null}
     </View>
@@ -70,6 +88,12 @@ const styles = StyleSheet.create({
   },
   list: {
     paddingHorizontal: 24,
+  },
+  loader: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#D4D4D4",
+    borderRadius: 12,
   },
 });
 

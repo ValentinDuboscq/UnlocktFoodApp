@@ -23,21 +23,21 @@ export default function Welcome() {
         >
           Healthy Food
         </Title>
-        <View style={[styles.wave, { bottom: -screen.height / 7 }]}>
+        <View style={[styles.wave, { bottom: -screen.height / 8 }]}>
           <WelcomeWave width={screen.width} height={screen.height / 6} />
         </View>
-        <View style={styles.illu}>
-          <WelcomeIllustration height={screen.height / 2} />
+        <View style={[styles.illu, { bottom: -screen.height / 9 }]}>
+          <WelcomeIllustration height={screen.height / 2.5} />
         </View>
       </View>
       <View style={styles.bottom}>
-        <WithPadding>
+        <WithPadding style={{ width: "100%" }}>
           <Text
             style={{ color: "#D4D4D4", textAlign: "center", lineHeight: 28 }}
           >
-            Start your day off right with these healthy breakfast recipes{" "}
+            Start your day off right with these healthy breakfast recipes
           </Text>
-          <Button href="/home" title="Get started" />
+          <Button href="/home" title="Get started" style={styles.button} />
         </WithPadding>
       </View>
     </View>
@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
   },
   illu: {
     position: "absolute",
-    bottom: -100,
   },
   wave: {
     position: "absolute",
@@ -67,6 +66,10 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    gap: 36,
+    paddingTop: 24,
+  },
+  button: {
+    alignSelf: "stretch",
+    marginTop: 24,
   },
 });

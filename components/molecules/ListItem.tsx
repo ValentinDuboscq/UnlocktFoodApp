@@ -19,7 +19,7 @@ const ListItem = ({ price, rate, name, img }: ListItemProps) => {
     <View
       style={[
         styles.container,
-        { width: screen.width / 2.5, height: screen.height / 3.5 },
+        { width: screen.width / 2.5, height: screen.height / 5 },
       ]}
     >
       <View style={styles.imageContainer}>
@@ -29,7 +29,9 @@ const ListItem = ({ price, rate, name, img }: ListItemProps) => {
         </View>
       </View>
       <View style={styles.footer}>
-        <Text style={styles.title}>{name}</Text>
+        <Text numberOfLines={1} style={styles.title}>
+          {name}
+        </Text>
         <Text style={styles.price}>{price}$</Text>
       </View>
     </View>
@@ -67,7 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderEndStartRadius: 12,
     borderEndEndRadius: 12,
-    height: "40%",
+    height: "35%",
   },
   title: {
     fontSize: 16,
