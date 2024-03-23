@@ -1,1 +1,1 @@
-export type FoodTypes = "fried-chicken" | "pizzas";
+export type FoodTypes = "fried-chicken" | "pizzas" | "bbqs";

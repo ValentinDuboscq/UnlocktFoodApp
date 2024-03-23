@@ -4,16 +4,24 @@ import List from "../components/organisms/List";
 import * as Device from "expo-device";
 import Title from "../components/atoms/Title";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Header from "../components/organisms/Header";
+import WithPadding from "../components/templates/WithPadding";
 
 export default function Home() {
   return (
     <SafeAreaView>
       <ScrollView style={styles.content}>
+        <Header />
         {Device.deviceName ? (
-          <Title style={{ fontSize: 24 }}>{Device.deviceName}</Title>
+          <WithPadding>
+            <Title style={{ fontSize: 24, paddingBottom: 24 }}>
+              {Device.deviceName}
+            </Title>
+          </WithPadding>
         ) : null}
         <List title="Favorite Pizzas" type="pizzas" />
-        <List title="Favorite Chicken" type="fried-chicken" />
+        <List title="Favorite Chickens" type="fried-chicken" />
+        <List title="Favorite BBQs" type="bbqs" />
       </ScrollView>
     </SafeAreaView>
   );

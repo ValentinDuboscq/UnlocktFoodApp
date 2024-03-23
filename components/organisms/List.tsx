@@ -5,8 +5,8 @@ import Title from "../atoms/Title";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { fetchFoods, Food } from "../../api/actions";
 import { FoodTypes } from "../../types/foods";
-import Star from "../icons/Star";
 import Text from "../atoms/Text";
+import WithPadding from "../templates/WithPadding";
 
 type ListProps = {
   title: string;
@@ -40,7 +40,9 @@ const List = ({ title, type }: ListProps) => {
 
   return (
     <View style={styles.container}>
-      <Title>{title}</Title>
+      <WithPadding>
+        <Title>{title}</Title>
+      </WithPadding>
       {flattenedData?.length ? (
         <FlatList
           contentContainerStyle={styles.list}
