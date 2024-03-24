@@ -2,6 +2,12 @@ import * as Yup from "yup";
 import { InferType } from "yup";
 import { FoodTypes } from "../types/foods";
 
+const DELAY_IN_MS = 500;
+
+const sleep = (ms: number) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
 const BASE_URL = process.env.EXPO_PUBLIC_API_URL;
 
 const foodSchema = Yup.object({
@@ -21,6 +27,9 @@ export const fetchFoods = async (type: FoodTypes, start: number, limit = 3) => {
   );
   const json = await res.json();
   const validatedData = await foodsSchema.validate(json);
+
+  // virtual delay
+  await sleep(DELAY_IN_MS);
 
   return {
     data: validatedData?.map((el, i) => ({ ...el })),

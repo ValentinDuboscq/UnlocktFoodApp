@@ -1,14 +1,38 @@
 import React, { useMemo } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, ScrollView, StyleSheet, View } from "react-native";
 import ListItem from "../molecules/ListItem";
 import Title from "../atoms/Title";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { fetchFoods, Food } from "../../api/actions";
 import { FoodTypes } from "../../types/foods";
-import Text from "../atoms/Text";
 import WithPadding from "../templates/WithPadding";
 import useDimensions from "../../hooks/useDimensions";
 import Loader from "../icons/Loader";
+
+const SkeletonList = ({ numItems = 3 }: { numItems?: number }) => {
+  const { screen } = useDimensions();
+
+  return (
+    <ScrollView
+      showsHorizontalScrollIndicator={false}
+      horizontal
+      style={{ flexDirection: "row", paddingBottom: 16 }}
+    >
+      {new Array(numItems).fill(1).map(() => (
+        <View
+          style={[
+            styles.loader,
+            {
+              width: screen.width / 2.5,
+              height: screen.height / 5,
+              marginLeft: screen.width / 20,
+            },
+          ]}
+        />
+      ))}
+    </ScrollView>
+  );
+};
 
 type ListProps = {
   title: string;
@@ -17,7 +41,7 @@ type ListProps = {
 
 const List = ({ title, type }: ListProps) => {
   const { screen } = useDimensions();
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     useInfiniteQuery({
       initialPageParam: 0,
       queryKey: [type],
@@ -46,6 +70,7 @@ const List = ({ title, type }: ListProps) => {
       <WithPadding>
         <Title>{title}</Title>
       </WithPadding>
+      {isLoading && <SkeletonList />}
       {flattenedData?.length ? (
         <FlatList
           contentContainerStyle={styles.list}
