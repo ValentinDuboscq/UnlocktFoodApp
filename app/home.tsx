@@ -6,6 +6,7 @@ import Title from "../components/atoms/Title";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../components/organisms/Header";
 import WithPadding from "../components/templates/WithPadding";
+import EnergyBurnedBanner from "../components/organisms/EnergyBurnedBanner";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
             </Title>
           </WithPadding>
         ) : null}
+        <EnergyBurnedBanner />
         <List title="Favorite Pizzas" type="pizzas" />
         <List title="Favorite Chickens" type="fried-chicken" />
         <List title="Favorite BBQs" type="bbqs" />
