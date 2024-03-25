@@ -49,7 +49,7 @@ const HeaderMessage = () => {
   return (
     <View style={styles.container}>
       {renderIcon()}
-      <Text>Good morning</Text>
+      <Text>Good {iconType}</Text>
     </View>
   );
 };

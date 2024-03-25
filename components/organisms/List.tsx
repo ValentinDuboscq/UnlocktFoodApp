@@ -18,8 +18,9 @@ const SkeletonList = ({ numItems = 3 }: { numItems?: number }) => {
       horizontal
       style={{ flexDirection: "row", paddingBottom: 16 }}
     >
-      {new Array(numItems).fill(1).map(() => (
+      {new Array(numItems).fill(1).map((_, i) => (
         <View
+          key={i}
           style={[
             styles.loader,
             {
