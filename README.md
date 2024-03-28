@@ -41,3 +41,13 @@ You can find the Figma design to implement [here](https://www.figma.com/file/wc
 - Placeholder data fetching
 - Animations
 - Use your creativity
+
+## Getting started
+
+### Launch app
+`npx expo start`
+
+### Launch server
+`node free-food-menus-api/server.js`
+
+
